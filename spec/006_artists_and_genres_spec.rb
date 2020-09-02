@@ -1,4 +1,5 @@
 require "spec_helper"
+require 'pry'
 
 describe "Associations — Artist and Genre:" do
   let(:genre) { Genre.new("indie rock") }
@@ -42,6 +43,7 @@ describe "Associations — Artist and Genre:" do
         expect(genre.artists).to include(artist)
         expect(genre.artists).to include(other_artist)
         expect(genre.artists.size).to be(2)
+        
       end
 
       it "does not return duplicate artists if the genre has more than one song by a particular artist (genre has many artists through songs)" do
