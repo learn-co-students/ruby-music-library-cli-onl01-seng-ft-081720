@@ -30,18 +30,11 @@ class Artist
 
     def add_song(song)
         song.artist = self if song.artist != self
-        end
-        if !@songs.any?(song)
-                @songs << song
-        end 
+        @songs << song if !@songs.any?(song)
     end
     
     def genres
-        @genres = []
-        self.songs.each do |song|
-            @genres << song.genre
-        end
-        @genres.uniq
+        self.songs.map {|song| song.genre}.uniq
     end
 
 end
