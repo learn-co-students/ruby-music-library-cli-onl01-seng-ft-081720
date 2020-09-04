@@ -1,7 +1,8 @@
 require_relative '../config/environment'
 
 class Genre 
-  attr_accessor :name, :songs
+  attr_accessor :name
+  attr_reader :songs
   extend Concerns::Findable
   @@all = []
   
@@ -25,8 +26,8 @@ class Genre
   
   def self.create(genre)
     genre = self.new(genre)
-    genre.save
-    genre
+    # genre.save
+    # genre
   end 
   
    def artists

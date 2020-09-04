@@ -29,15 +29,54 @@ end
 end 
 
 def list_artists 
-        Artist.all.sort_by(&:name).each.with_index(1) do |artist, i|
-            puts "#{i}. #{artist.name}"
-        end
-    end
+    Artist.all.sort_by(&:name).each.with_index(1) do |artist, i|
+       puts "#{i}. #{artist.name}"
+   end
+ end
 
  
-def lists_genres
-  Genre.all.sort_by(&:name).each.with_index(1) do |genres, i|
-            puts "#{i}. #{genres.name}"
-          end 
+def list_genres
+    Genre.all.sort_by(&:name).each.with_index(1) do |genre, i|
+       puts "#{i}. #{genre.name}"
+   end
+ end 
+ 
+ def list_songs_by_artist 
+   puts "Please enter the name of an artist:"
+   input = gets.chomp
+   
+   if artist = Artist.find_by_name(input) 
+      songs_sorted_by_name = artist.songs.sort_by do |song|
+        song.name
+      end
+      
+      songs_sorted_by_name.each.with_index(1) do |song,i|
+        puts "#{i}. #{song.name} - #{song.genre.name}"
+      end
+    end
+  end
+  
+  def list_songs_by_genre
+   puts "Please enter the name of a genre:"
+   input = gets.chomp 
+   
+   if genre = Genre.find_by_name(input)
+     songs_sorted_by_name = genre.songs.sort_by do |song|
+        song.name
+      end 
+      
+      songs_sorted_by_name.each.with_index(1) do |genre, i|
+        puts "#{i}. #{genre.artist.name} - #{genre.name}"
+      end 
+    end 
+  end 
+  
+ def play_song
+  puts "Which song number would you like to play?"
+  input = gets.chomp.to_i 
+  if (1..Song.all.length).include?(input)
+    song = Song.all.sort_by(&:name)[input - 1]
+end 
+  puts "Playing #{song.name} by #{song.artist.name}" if song
 end 
 end 
