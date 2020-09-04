@@ -16,21 +16,28 @@ def call
      puts "To quit, type 'exit'."
      puts "What would you like to do?"
     input = gets.chomp
-    if input != exit
+    if input != "exit"
       
       call
   end 
 end 
 
- def lists_songs
-   Song.all.sort_by(&:name).each.with_index(1) do |song, idx|
-     puts "#{idx}. #{song.artis.name} - #{song.name} - #{song.genre.name}" 
-   end 
- end 
+ def list_songs
+      Song.all.sort_by(&:name).each.with_index(1) do |song, i|
+     puts "#{i}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
+  end 
+end 
 
- def lists_artists
- end
+def list_artists 
+        Artist.all.sort_by(&:name).each.with_index(1) do |artist, i|
+            puts "#{i}. #{artist.name}"
+        end
+    end
+
  
- def lists_genres
- end 
+def lists_genres
+  Genre.all.sort_by(&:name).each.with_index(1) do |genres, i|
+            puts "#{i}. #{genres.name}"
+          end 
+end 
 end 
