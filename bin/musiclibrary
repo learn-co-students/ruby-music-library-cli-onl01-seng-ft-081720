@@ -1,5 +1,11 @@
 #!/usr/bin/env ruby
 
+require 'pry'
 require_relative '../config/environment'
+# require_relative '../lib' => This is in 'environment.rb'
+
+
 
 MusicLibraryController.new.call
+
+
