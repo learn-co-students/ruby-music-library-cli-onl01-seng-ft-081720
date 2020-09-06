@@ -1,4 +1,10 @@
+require "pry"
+
+#this file contains all of my song methods in the song class so I can run these methods in other files
+#by simply calling on the class in such: Song.new()
+
 class Song
+  
   attr_accessor :name
   attr_reader :artist, :genre
 
@@ -58,11 +64,11 @@ class Song
   end
 
   def self.find_by_name(name)
-    all.detect {|song| song.name == name}
+    @@all.detect {|song| song.name == name}
   end
 
   def self.find_or_create_by_name(name)
-    find_by_name(name) || create(name)
+    self.find_by_name(name) || self.create(name)
   end
 
   def self.new_from_filename(filename)

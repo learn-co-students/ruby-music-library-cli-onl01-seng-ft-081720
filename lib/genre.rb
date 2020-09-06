@@ -1,4 +1,7 @@
 require 'pry'
+
+#this file contains all of my genre methods in the genre class so I can run these methods in other files
+#by simply calling on the class in such: Genre.new()
 class Genre
   extend Concerns::Findable
   attr_accessor :name, :songs

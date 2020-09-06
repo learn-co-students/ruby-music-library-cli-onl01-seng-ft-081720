@@ -1,4 +1,7 @@
 require 'pry'
+#This is where most of the action happens Its whre most of the instructions are able to be printed out.
+#It calls on the MusicImporter class which iterates through the files and allows things to be selected. I believe. 
+#If not I will have an even better understanding by the end of this creating this porject.
 
 class MusicLibraryController
 
@@ -29,6 +32,8 @@ class MusicLibraryController
       input = gets.chomp
 
       case input
+        #this file has methods that call on other methods in other classes and files
+        #then it calls on these methods in here to simplify the flow of the way things connect with each other.
 
       when 'list songs'
         self.list_songs

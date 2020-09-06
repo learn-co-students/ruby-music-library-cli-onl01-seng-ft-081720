@@ -1,3 +1,7 @@
+require "pry"
+
+#this file contains all of my artist methods in the artist class so I can run these methods in other files
+#by simply calling on the class in such: Artist.new()
 class Artist
   extend Concerns::Findable
   attr_accessor :name
