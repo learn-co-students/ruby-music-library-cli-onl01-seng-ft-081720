@@ -27,7 +27,33 @@ class MusicLibraryController
 
         puts "What would you like to do?"
 
-        while gets != "exit"
+
+        until gets == "exit"
+        # end
+
+        if gets = "list songs"
+            list_songs
+        end
+
+        if gets = "list artists"
+            list_artists
+        end
+
+        if gets = "list genres"
+            list_genres
+        end
+
+        if gets = "list artist"
+            list_songs_by_artist
+        end
+            
+        if gets = "list genre"
+            list_songs_by_genre
+        end
+
+        if gets = "play song"
+            play_song
+        end
         end
     end
 
@@ -61,15 +87,44 @@ class MusicLibraryController
         puts "Please enter the name of an artist:"
         artist = gets.chomp
 
-        if artist == nil
-            puts "no artist"
-        else
-            artist = Artist.all[artist.to_i-1]
-            puts "#{artist.name}"
+        if Artist.find_by_name(artist) != nil
+            artist = Artist.find_by_name(artist)
+            songs = artist.songs.sort_by { |song| song.name }
+
+            songs.each do |song|
+                puts "#{songs.index(song) + 1}. #{song.name} - #{song.genre.name}"
+            end
         end
-
-
     end
+
+    def list_songs_by_genre
+        puts "Please enter the name of a genre:"
+        genre = gets.chomp  
+
+        if Genre.find_by_name(genre) != nil
+            genre = Genre.find_by_name(genre)
+            songs = genre.songs.sort_by { |song| song.name }
+
+            songs.each do |song|
+                puts "#{songs.index(song) + 1}. #{song.artist.name} - #{song.name}"
+            end
+        end
+    end
+
+    def play_song
+        puts "Which song number would you like to play?"
+        song_number = gets.chomp
+
+        if song_number.to_i.between?(1, Song.all.count)
+            song_number = song_number.to_i - 1
+            songs = Song.all.sort_by { |song| song.name }
+            song = songs[song_number]
+
+            puts "Playing #{song.name} by #{song.artist.name}"
+        end
+    end
+
+        
 
 
 
