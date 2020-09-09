@@ -1,5 +1,5 @@
 class MusicLibraryController
-    attr_accessor :path
+    attr_accessor :path, :songs, :artists, :genres
 
     def initialize (path = "./db/mp3s")
         @path = path
@@ -32,16 +32,49 @@ class MusicLibraryController
     end
 
     def list_songs
-binding.pry
+        songs = Song.all.sort_by { |song| song.name }
+
+        songs.each do |song|
+            puts "#{songs.index(song) + 1}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
+        end
+    end
+
+    def list_artists
+
+        artists = Artist.all.sort_by { |artist| artist.name }
+
+        artists.each do |artist|
+            puts "#{artists.index(artist) + 1}. #{artist.name}"
+        end
+    end
+
+    def list_genres
+
+        genres = Genre.all.sort_by { |genre| genre.name }
+
+        genres.each do |genre|
+            puts "#{genres.index(genre) + 1}. #{genre.name}"
+        end
+    end
+
+    def list_songs_by_artist
+        puts "Please enter the name of an artist:"
+        artist = gets.chomp
+
+        if artist == nil
+            puts "no artist"
+        else
+            artist = Artist.all[artist.to_i-1]
+            puts "#{artist.name}"
+        end
 
 
-        songs = Song.all.each { |a, b| a.name <=> b.name }
+    end
+
 
 
             
-            # puts ("1. #{song.artist} - #{song.name} - #{song.genre}")
 
-    end
 
 
 end
